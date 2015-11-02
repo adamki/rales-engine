@@ -2,6 +2,12 @@
 
 [Assignment](https://github.com/turingschool/lesson_plans/blob/master/ruby_03-professional_rails_applications/rails_engine.md)
 
+# Getting Started
+* Clone down this project `git@github.com:adamki/rales-engine.git`
+* `bundle` and `rake db:setup`
+* use `rails runner "Parser.load"` to parse all raw CSV data
+* start the server using `rails s`
+
 
 #Learn how to to build Single-Responsibility controllers to provide a well-designed and versioned API.
 Learn how to use controller tests to drive your design.
