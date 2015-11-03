@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class InvoiceControllerTest < ActionController::TestCase
+class Api::V1::MerchantsControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end

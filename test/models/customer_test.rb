@@ -11,6 +11,7 @@ class CustomerTest < ActiveSupport::TestCase
   end
 
   test "a customer has many transactions" do
+    skip
     customer = Customer.create(first_name: "adam")
     transaction = Transaction.create(
                    credit_card_number: "1234123412341234",

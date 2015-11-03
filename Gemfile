@@ -17,7 +17,9 @@ group :development, :test do
   gem 'pry-rails'
   gem "database_cleaner"
   gem 'simplecov'
+  gem 'factory_girl_rails'
 end
+
 
 group :development do
   gem 'web-console', '~> 2.0'
