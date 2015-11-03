@@ -5,7 +5,7 @@
 # Getting Started
 * Clone down this project `git@github.com:adamki/rales-engine.git`
 * `bundle` and `rake db:setup`
-* use `rails runner "Parser.load"` to parse all raw CSV data
+* use `rails runner "ParseService.import_all"` to parse all raw CSV data
 * start the server using `rails s`
 
 
