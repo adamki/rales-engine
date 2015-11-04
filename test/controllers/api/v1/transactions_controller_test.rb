@@ -7,38 +7,35 @@ class Api::V1::TransactionsControllerTest < ActionController::TestCase
   end
 
   test "#index has correct amount of objects" do
-    skip
-    customer_count = Customer.count
+    transaction_count = Transaction.count
     get :index, format: :json
 
-    assert customer_count, json_response.count
+    assert transaction_count, json_response.count
     assert_response :success
   end
 
   test "#show" do
-    skip
-    customer = customers(:customer_one)
-    get :show, id: customer.id, format: :json
+    transaction = transactions(:transaction_one)
+    get :show, id: transaction.id, format: :json
     json_response
+    number = "4654405418249632"
 
     assert_response :success
-    assert_equal "Jeff", customer[:first_name]
+    assert_equal number, transaction[:credit_card_number]
   end
 
   test "#find" do
-    skip
-    customer = customers(:customer_one)
-    get :find, format: :json, name: customer.first_name
-    customer = JSON.parse(response.body, symbolize_names: true)
+    transaction = transactions(:transaction_one)
+    get :find, format: :json, name: transaction.credit_card_number
+    transaction = JSON.parse(response.body, symbolize_names: true)
 
     assert_response :success
   end
 
   test "#find_all" do
-    skip
-    customer = customers(:customer_one)
-    get :find_all, format: :json, merchant_id: customer.last_name
-    customer = JSON.parse(response.body, symbolize_names: true)
+    transaction = transactions(:transaction_one)
+    get :find_all, format: :json, merchant_id: transaction.result
+    transaction = JSON.parse(response.body, symbolize_names: true)
 
     assert_response :success
   end

@@ -1,1 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+merchant_one:
+  name: Apple
+
+merchant_two:
+  name: Microsoft

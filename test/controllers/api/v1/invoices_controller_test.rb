@@ -7,39 +7,37 @@ class Api::V1::InvoicesControllerTest < ActionController::TestCase
   end
 
   test "#index has correct amount of objects" do
-    skip
-    customer_count = Customer.count
+    invoice_count = Invoice.count
     get :index, format: :json
 
-    assert customer_count, json_response.count
+    assert invoice_count, json_response.count
     assert_response :success
   end
 
   test "#show" do
-    skip
-    customer = customers(:customer_one)
-    get :show, id: customer.id, format: :json
+    invoice = invoices(:invoice_one)
+    get :show, id: invoice.id, format: :json
     json_response
 
     assert_response :success
-    assert_equal "Jeff", customer[:first_name]
   end
 
   test "#find" do
-    skip
-    customer = customers(:customer_one)
-    get :find, format: :json, name: customer.first_name
-    customer = JSON.parse(response.body, symbolize_names: true)
+    invoice = invoices(:invoice_one)
+    get :find, format: :json, name: invoice.merchant
+    invoice = JSON.parse(response.body, symbolize_names: true)
 
     assert_response :success
   end
 
   test "#find_all" do
-    skip
-    customer = customers(:customer_one)
-    get :find_all, format: :json, merchant_id: customer.last_name
-    customer = JSON.parse(response.body, symbolize_names: true)
+    invoice = invoices(:invoice_one)
+    get :find_all, format: :json, merchant_id: invoice.status
 
     assert_response :success
+  end
+
+  def json_response
+    JSON.parse(response.body)
   end
 end

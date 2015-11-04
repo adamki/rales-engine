@@ -1,2 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+invoice_one:
+  customer: customer_one
+  merchant: merchant_one
+  status: "shipped"
+
+invoice_two:
+  customer: customer_two
+  merchant: merchant_two
+  status: "shipped"

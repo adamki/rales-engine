@@ -1,2 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+transaction_one:
+  invoice: invoice_one
+  credit_card_number: "4654405418249632"
+  result: "success"
+
+transaction_two:
+  invoice: invoice_two
+  credit_card_number: "4411510861233607"
+  result: "failed"

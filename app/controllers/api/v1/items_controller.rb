@@ -27,6 +27,7 @@ class Api::V1::ItemsController < ApplicationController
     rand_id = rand(Item.count)
     respond_with Item.find_by(id: rand_id)
   end
+  
   private
 
     def item_params
