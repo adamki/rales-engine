@@ -13,7 +13,7 @@ class ItemTest < ActiveSupport::TestCase
     item = Item.create(name: "stereo")
     invoice_item = InvoiceItem.create(quantity: "12")
     item.invoice_items << invoice_item
-    assert_equal "12", item.invoice_items.first.quantity
+    assert_equal 12, item.invoice_items.first.quantity
   end
 
   test "an item has many invoices through invoice items" do

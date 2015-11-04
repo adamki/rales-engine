@@ -15,12 +15,20 @@ class Api::V1::InvoiceItemsController < ApplicationController
   end
 
   def find_all
-    respond_with InvoiceItem.where(invoice_item_params).first
+    respond_with InvoiceItem.where(invoice_item_params)
   end
 
   def random
     rand_id = rand(InvoiceItem.count)
     respond_with InvoiceItem.find_by(id: rand_id)
+  end
+
+  def item
+
+  end
+
+  def invoice
+
   end
 
   private

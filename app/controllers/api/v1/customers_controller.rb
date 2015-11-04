@@ -25,7 +25,7 @@ class Api::V1::CustomersController < ApplicationController
 
 
   def find_all
-    respond_with Customer.where(customer_params).first
+    respond_with Customer.where(customer_params)
   end
 
   def random

@@ -20,7 +20,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def find_all
-    respond_with Item.where(item_params).first
+    respond_with Item.where(item_params)
   end
 
   def random

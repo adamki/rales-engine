@@ -15,7 +15,7 @@ class Api::V1::TransactionsController < ApplicationController
   end
 
   def find_all
-    respond_with Transaction.where(transaction_params).first
+    respond_with Transaction.where(transaction_params)
   end
 
   def random

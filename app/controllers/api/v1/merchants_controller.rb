@@ -23,6 +23,13 @@ class Api::V1::MerchantsController < ApplicationController
     respond_with Merchant.find_by(id: rand_id)
   end
 
+  def items
+    respond_with Merchant.find_by(id: merchant_params[:merchant_id]).items
+  end
+
+  def invoices
+    respond_with Merchant.find_by(id: merchant_params[:merchant_id]).invoices
+  end
   private
 
   def merchant_params
