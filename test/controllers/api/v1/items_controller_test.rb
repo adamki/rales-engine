@@ -2,7 +2,6 @@ require 'test_helper'
 
 class Api::V1::ItemsControllerTest < ActionController::TestCase
 
-
   test "#index" do
     get :index, format: :json
     assert_response :success
@@ -36,7 +35,13 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "#find_all" do
+    item = items(:one)
+    get :find_all, format: :json, merchant_id: item.merchant_id
+    item = JSON.parse(response.body, symbolize_names: true)
 
+    assert_response :success
+  end
 
   def json_response
     JSON.parse(response.body)
