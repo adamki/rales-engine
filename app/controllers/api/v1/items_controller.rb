@@ -1,8 +1,35 @@
 class Api::V1::ItemsController < ApplicationController
   respond_to :json
+
   def index
     items = Item.all
     respond_with items
-
   end
+
+  def show
+    respond_with Item.find_by(id: params[:id])
+  end
+
+  def find
+    if item_params.has_key?(:name)
+      name = item_params[:name].titleize
+      respond_with Item.ci_where(name).first
+    else
+      respond_with Item.where(item_params).first
+    end
+  end
+
+  private
+
+    def item_params
+      params.permit(:id,
+                    :name,
+                    :description,
+                    :unit_price,
+                    :merchant_id,
+                    :item_id,
+                    :created_at,
+                    :updated_at,
+                    :quantity)
+    end
 end

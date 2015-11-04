@@ -4,6 +4,7 @@ require 'bigdecimal'
 class ParseService
 
   def self.import_all
+    puts "importing customers"
     import_customers
     import_invoice_items
     import_invoices
@@ -21,24 +22,28 @@ class ParseService
   end
 
   def self.import_invoices
+    puts "importing invoices"
     CSV.foreach("db/data/invoices.csv", headers: true, header_converters: :symbol) do |row|
       Invoice.create(row.to_hash)
     end
   end
 
   def self.import_merchants
+    puts "importing merchants"
     CSV.foreach("db/data/merchants.csv", headers: true, header_converters: :symbol) do |row|
       Merchant.create(row.to_hash)
     end
   end
 
   def self.import_transactions
+    puts "importing transactions"
     CSV.foreach("db/data/transactions.csv", headers: true, header_converters: :symbol) do |row|
       Transaction.create(row.to_hash)
     end
   end
 
   def self.import_items
+    puts "importing items"
     CSV.foreach("db/data/items.csv", headers: true, header_converters: :symbol) do |row|
       Item.create(id: row[:id],
                 name: row[:name],
@@ -51,6 +56,7 @@ class ParseService
   end
 
   def self.import_invoice_items
+    puts "importing invoice items"
     CSV.foreach("db/data/invoice_items.csv", headers: true, header_converters: :symbol) do |row|
       InvoiceItem.create(id: row[:id],
                     item_id: row[:item_id],
