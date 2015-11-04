@@ -23,7 +23,6 @@ class Api::V1::CustomersController < ApplicationController
     end
   end
 
-
   def find_all
     respond_with Customer.where(customer_params)
   end
@@ -31,6 +30,15 @@ class Api::V1::CustomersController < ApplicationController
   def random
     rand_id = rand(Customer.count)
     respond_with Customer.find_by(id: rand_id)
+  end
+
+  def invoices
+    byebug
+    respond_with Customer.find_by(id: customer_params[:customer_id]).invoices
+  end
+
+  def transactions
+    respond_with Customer.find_by(id: customer_params[:customer_id]).transactions
   end
   private
 
