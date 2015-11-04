@@ -23,6 +23,10 @@ class Api::V1::TransactionsController < ApplicationController
     respond_with Transaction.find_by(id: rand_id)
   end
 
+  def invoice
+    respond_with Transaction.find_by(id: transaction_params[:transaction_id]).invoice
+  end
+
   private
 
   def transaction_params
