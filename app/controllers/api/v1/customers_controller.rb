@@ -33,16 +33,16 @@ class Api::V1::CustomersController < ApplicationController
   end
 
   def invoices
-    byebug
     respond_with Customer.find_by(id: customer_params[:customer_id]).invoices
   end
 
   def transactions
     respond_with Customer.find_by(id: customer_params[:customer_id]).transactions
   end
+
   private
 
   def customer_params
-    params.permit(:id, :first_name, :last_name, :created_at, :updated_at)
+    params.permit(:id, :first_name, :last_name, :customer_id, :created_at, :updated_at)
   end
 end
