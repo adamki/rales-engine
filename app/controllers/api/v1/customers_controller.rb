@@ -12,15 +12,7 @@ class Api::V1::CustomersController < ApplicationController
   end
 
   def find
-    if customer_params.has_key?(:first_name)
-      name = customer_params[:first_name]
-      respond_with Customer.ci_where_first_name(name)
-    elsif customer_params.has_key?(:last_name)
-      name = customer_params[:last_name]
-      respond_with Customer.ci_where_last_name(name)
-    else
-      respond_with Customer.where(customer_params).first
-    end
+    respond_with Customer.find_by(customer_params)
   end
 
   def find_all
@@ -38,6 +30,10 @@ class Api::V1::CustomersController < ApplicationController
 
   def transactions
     respond_with Customer.find_by(id: customer_params[:customer_id]).transactions
+  end
+
+  def favorite_merchant
+    respond_with Customer.find_by(id: customer_params[:customer_id]).favorite_merchant
   end
 
   private

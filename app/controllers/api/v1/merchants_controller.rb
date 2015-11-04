@@ -24,12 +24,32 @@ class Api::V1::MerchantsController < ApplicationController
   end
 
   def items
-    respond_with Merchant.find_by(id: merchant_params[:merchant_id]).items
+    respond_with current_merchant.items
   end
 
   def invoices
-    respond_with Merchant.find_by(id: merchant_params[:merchant_id]).invoices
+    respond_with current_merchant.invoices
   end
+
+  def get_successful_invoices
+    current_merchant.invoices.success
+  end
+
+  def get_pending_invoices
+    current_merchant.invoices.pending
+  end
+
+  def favorite_customer
+    respond_with current_merchant.favorite_customer
+  end
+
+  def customers_with_pending_invoices
+    # pending_transactions = get_pending_invoices
+    # customer = pending_transactions.group_by(&:customer_id).sort_by{|k,v|v.count}.reverse.flatten.first
+    # respond_with Customer.find(customer)
+    respond_with current_merchant.pending_invoices
+  end
+
   private
 
   def merchant_params
@@ -40,5 +60,9 @@ class Api::V1::MerchantsController < ApplicationController
                   :created_at,
                   :updated_at,
                   :quantity)
+  end
+
+  def current_merchant
+    Merchant.find_by(id: merchant_params[:merchant_id])
   end
 end

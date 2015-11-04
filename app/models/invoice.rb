@@ -6,4 +6,12 @@ class Invoice < ActiveRecord::Base
 
   has_many :invoice_items
   has_many :items, through: :invoice_items
+
+  def self.success
+    joins(:transactions).where("result = ?", "success")
+  end
+
+  def self.pending
+    joins(:transactions).where("result = ?", "failed")
+  end
 end

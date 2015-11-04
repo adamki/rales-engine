@@ -40,4 +40,9 @@ class Api::V1::CustomersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "#favorite_merchant" do
+
+
+  end
+
 end
