@@ -1,2 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+customer_one:
+  first_name: Jeff
+  last_name: Casimir
+
+customer_two:
+  first_name: Jorge
+  last_name: Tellez 

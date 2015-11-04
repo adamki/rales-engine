@@ -8,10 +8,10 @@ Rails.application.routes.draw do
       resources :items, defaults: { format: :json}, only: [:index, :show]
 
 
-      get "/customer/find", to: "customers#find",defaults: { :format => 'json' }
+      get "/customers/find", to: "customers#find",defaults: { :format => 'json' }
       get "/customers/find_all", to: "customers#find_all",defaults: { :format => 'json' }
       get "/customers/random", to: "customers#random",defaults: { :format => 'json' }
-      resources :customer, defaults: { format: :json}, only: [:index, :show]
+      resources :customers, defaults: { format: :json}, only: [:index, :show]
 
       resources :invoice_items, defaults: { format: :json}, only: [:index, :show]
       resources :invoices, defaults: { format: :json}, only: [:index, :show]
