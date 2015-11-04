@@ -5,12 +5,18 @@ Rails.application.routes.draw do
       get "/items/find", to: "items#find",defaults: { :format => 'json' }
       get "/items/find_all", to: "items#find_all",defaults: { :format => 'json' }
       get "/items/random", to: "items#random",defaults: { :format => 'json' }
-      resources :items, defaults: { format: :json}, only: [:index, :show]
+      resources :items, defaults: { format: :json}, only: [:index, :show] do
+        get :invoice_items
+        get :merchant
+      end
 
       get "/customers/find", to: "customers#find",defaults: { :format => 'json' }
       get "/customers/find_all", to: "customers#find_all",defaults: { :format => 'json' }
       get "/customers/random", to: "customers#random",defaults: { :format => 'json' }
-      resources :customers, defaults: { format: :json}, only: [:index, :show]
+      resources :customers, defaults: { format: :json}, only: [:index, :show] do
+        get :invoices
+        get :transactions
+      end
 
       get "/invoice_items/find", to: "invoice_items#find",defaults: { :format => 'json' }
       get "/invoice_items/find_all", to: "invoice_items#find_all",defaults: { :format => 'json' }
@@ -40,12 +46,12 @@ Rails.application.routes.draw do
         get :invoices
       end
 
-
-
       get "/transactions/find", to: "transactions#find",defaults: { :format => 'json' }
       get "/transactions/find_all", to: "transactions#find_all",defaults: { :format => 'json' }
       get "/transactions/random", to: "transactions#random",defaults: { :format => 'json' }
-      resources :transactions, defaults: { format: :json}, only: [:index, :show]
+      resources :transactions, defaults: { format: :json}, only: [:index, :show] do
+        get :invoice
+      end
     end
   end
 end
