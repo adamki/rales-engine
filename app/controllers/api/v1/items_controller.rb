@@ -27,7 +27,15 @@ class Api::V1::ItemsController < ApplicationController
     rand_id = rand(Item.count)
     respond_with Item.find_by(id: rand_id)
   end
-  
+
+  def invoice_items
+    respond_with Item.find_by(id: item_params[:item_id]).invoice_items
+  end
+
+  def merchant
+    respond_with Item.find_by(id: item_params[:item_id]).merchant
+  end
+
   private
 
     def item_params
