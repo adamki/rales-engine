@@ -49,7 +49,20 @@ class Api::V1::MerchantsController < ApplicationController
     respond_with customers
   end
 
+  def most_revenue
+
+    respond_with Merchant.select("merchants.*, sum(invoice_items.quantity * invoice_items.unit_price) AS total_revenue")
+        .joins(:invoice_items)
+        .joins(:transactions)
+        .where(transactions: { result: 'success' })
+        .group("merchants.id")
+        .order("total_revenue DESC")
+        .limit(params["quantity"])
+
+  end
+
   private
+
 
   def merchant_params
     params.permit(:id,

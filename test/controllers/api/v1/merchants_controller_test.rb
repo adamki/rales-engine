@@ -31,6 +31,14 @@ class Api::V1::MerchantsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "#find again" do
+    merchant = merchants(:merchant_one)
+    get :find, format: :json, id: merchant.id
+    merchant = JSON.parse(response.body, symbolize_names: true)
+
+    assert_response :success
+  end
+
   test "#find_all" do
     merchant = merchants(:merchant_one)
     get :find_all, format: :json, merchant_name: merchant.name
@@ -38,5 +46,22 @@ class Api::V1::MerchantsControllerTest < ActionController::TestCase
 
     assert_response :success
   end
+
+  test "#favorite_customer" do
+    merchant = merchants(:merchant_one)
+    get :favorite_customer, format: :json, merchant_id: merchant.id
+    merchant = JSON.parse(response.body, symbolize_names: true)
+
+    assert_response :success
+  end
+
+  test "#customers_with_pending_invoices" do
+    merchant = merchants(:merchant_one)
+    get :customers_with_pending_invoices, format: :json, merchant_id: merchant.id
+    merchant = JSON.parse(response.body, symbolize_names: true)
+
+    assert_response :success
+  end
+
 
 end

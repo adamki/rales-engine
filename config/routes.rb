@@ -45,6 +45,9 @@ Rails.application.routes.draw do
 
       get "/merchants/:merchant_id/favorite_customer", to: "merchants#favorite_customer",defaults: { :format => 'json' }
       get "/merchants/:merchant_id/customers_with_pending_invoices", to: "merchants#customers_with_pending_invoices",defaults: { :format => 'json' }
+
+      get "/merchants/most_revenue", to: "merchants#most_revenue",defaults: { :format => 'json' }
+
       resources :merchants, defaults: { format: :json}, only: [:index, :show] do
         get :items
         get :invoices

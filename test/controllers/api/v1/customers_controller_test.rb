@@ -40,9 +40,18 @@ class Api::V1::CustomersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "#transactions" do
+    customer = customers(:customer_one)
+    get :transactions, format: :json, customer_id: customer.id
+
+    assert_response :success
+  end
+
   test "#favorite_merchant" do
+    customer = customers(:customer_one)
+    get :favorite_merchant, format: :json, customer_id: customer.id
 
-
+    assert_response :success
   end
 
 end

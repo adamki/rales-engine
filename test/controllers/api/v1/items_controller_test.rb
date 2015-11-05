@@ -43,6 +43,7 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+
   def json_response
     JSON.parse(response.body)
   end

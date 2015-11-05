@@ -37,6 +37,16 @@ class Api::V1::InvoicesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "#transactions" do
+    invoice = invoices(:invoice_one)
+    get :transactions, format: :json, invoice_id: invoice.id
+
+    assert_response :success
+  end
+
+
+
+
   def json_response
     JSON.parse(response.body)
   end

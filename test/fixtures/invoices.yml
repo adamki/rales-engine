@@ -9,3 +9,8 @@ invoice_two:
   customer: customer_two
   merchant: merchant_two
   status: "shipped"
+
+invoice_two:
+  customer: customer_two
+  merchant: merchant_two
+  status: "shipped"
