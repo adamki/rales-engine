@@ -43,10 +43,13 @@ Rails.application.routes.draw do
       get "/merchants/find_all", to: "merchants#find_all",defaults: { :format => 'json' }
       get "/merchants/random", to: "merchants#random",defaults: { :format => 'json' }
 
+      get "/merchants/:merchant_id/revenue", to: "merchants#revenue",defaults: { :format => 'json' }
       get "/merchants/:merchant_id/favorite_customer", to: "merchants#favorite_customer",defaults: { :format => 'json' }
       get "/merchants/:merchant_id/customers_with_pending_invoices", to: "merchants#customers_with_pending_invoices",defaults: { :format => 'json' }
 
       get "/merchants/most_revenue", to: "merchants#most_revenue",defaults: { :format => 'json' }
+      get "/merchants/most_items", to: "merchants#most_items",defaults: { :format => 'json' }
+      get "/merchants/revenue", to: "merchants#revenue",defaults: { :format => 'json' }
 
       resources :merchants, defaults: { format: :json}, only: [:index, :show] do
         get :items

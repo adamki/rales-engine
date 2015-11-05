@@ -50,31 +50,40 @@ class Api::V1::MerchantsController < ApplicationController
   end
 
   def most_revenue
-
     respond_with Merchant.select("merchants.*, sum(invoice_items.quantity * invoice_items.unit_price) AS total_revenue")
         .joins(:invoice_items)
-        .joins(:transactions)
-        .where(transactions: { result: 'success' })
         .group("merchants.id")
         .order("total_revenue DESC")
         .limit(params["quantity"])
+        .merge(InvoiceItem.successful)
+  end
 
+  def revenue
+    revenue = Merchant.revenue(merchant_params[:merchant_id], merchant_params[:date])
+    respond_with({"revenue" => revenue.to_s})
+  end
+
+  def most_items
+    respond_with Merchant.most_items(merchant_params[:quantity])
+  end
+
+  def revenue
+    respond_with "Merchant.revenue"
   end
 
   private
 
+    def merchant_params
+      params.permit(:id,
+                    :name,
+                    :merchant_id,
+                    :date,
+                    :created_at,
+                    :updated_at,
+                    :quantity)
+    end
 
-  def merchant_params
-    params.permit(:id,
-                  :name,
-                  :merchant_id,
-                  :date,
-                  :created_at,
-                  :updated_at,
-                  :quantity)
-  end
-
-  def current_merchant
-    Merchant.find_by(id: merchant_params[:merchant_id])
-  end
+    def current_merchant
+      Merchant.find_by(id: merchant_params[:merchant_id])
+    end
 end
