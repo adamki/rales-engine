@@ -44,10 +44,9 @@ class Api::V1::MerchantsController < ApplicationController
   end
 
   def customers_with_pending_invoices
-    # pending_transactions = get_pending_invoices
-    # customer = pending_transactions.group_by(&:customer_id).sort_by{|k,v|v.count}.reverse.flatten.first
-    # respond_with Customer.find(customer)
-    respond_with current_merchant.pending_invoices
+    pending_transactions = get_pending_invoices
+    customers = pending_transactions.joins(:customer).uniq
+    respond_with customers
   end
 
   private
