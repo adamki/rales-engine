@@ -19,11 +19,11 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
     item = items(:one)
     get :show, id: item.id, format: :json
     json_response
-    price = format_price(item[:unit_price])
+    price = item[:unit_price]
 
     assert_response :success
     assert_equal "Item Qui Esse", item[:name]
-    assert_equal "$751.07", price
+    assert_equal 75107, price
   end
 
 

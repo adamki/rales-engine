@@ -67,9 +67,7 @@ class Api::V1::MerchantsController < ApplicationController
     respond_with Merchant.most_items(merchant_params[:quantity])
   end
 
-  def revenue
-    respond_with "Merchant.revenue"
-  end
+
 
   private
 

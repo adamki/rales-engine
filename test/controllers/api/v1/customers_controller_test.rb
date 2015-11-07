@@ -30,6 +30,8 @@ class Api::V1::CustomersControllerTest < ActionController::TestCase
     customer = JSON.parse(response.body, symbolize_names: true)
 
     assert_response :success
+    assert_equal "Jeff", customer[:first_name]
+    assert_equal "Casimir", customer[:last_name]
   end
 
   test "#find_all" do
@@ -49,9 +51,11 @@ class Api::V1::CustomersControllerTest < ActionController::TestCase
 
   test "#favorite_merchant" do
     customer = customers(:customer_one)
+    merchant = merchants(:merchant_one)
     get :favorite_merchant, format: :json, customer_id: customer.id
 
     assert_response :success
+    assert_equal "Apple", merchant[:name]
   end
 
 end

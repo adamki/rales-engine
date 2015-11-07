@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :api  do
     namespace :v1 do
 
+      get "/items/most_revenue", to: "items#most_revenue", defaults: {:format => 'json' }
       get "/items/find", to: "items#find",defaults: { :format => 'json' }
       get "/items/find_all", to: "items#find_all",defaults: { :format => 'json' }
       get "/items/random", to: "items#random",defaults: { :format => 'json' }

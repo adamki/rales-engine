@@ -63,5 +63,30 @@ class Api::V1::MerchantsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "#most_revenue" do
+    merchant = merchants(:merchant_one)
+    get :most_revenue, format: :json, merchant_id: merchant.id
+    merchant = JSON.parse(response.body, symbolize_names: true)
+
+    assert_response :success
+  end
+
+  test "#most_items" do
+    merchant = merchants(:merchant_one)
+    get :most_items, format: :json, merchant_id: merchant.id
+    merchant = JSON.parse(response.body, symbolize_names: true)
+
+    assert_response :success
+  end
+
+  test "#revenue" do
+    merchant = merchants(:merchant_one)
+    get :revenue, format: :json, merchant_id: merchant.id
+    merchant = JSON.parse(response.body, symbolize_names: true)
+
+    assert_response :success
+
+  end
+
 
 end
